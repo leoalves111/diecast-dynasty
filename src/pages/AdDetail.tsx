@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
-import { MapPin, ChevronRight, MessageCircle, User, Clock, Eye, ShieldCheck } from "lucide-react";
+import { MapPin, ChevronRight, MessageCircle, User, Clock, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import AdCard from "@/components/cards/AdCard";
 import Layout from "@/components/layout/Layout";
 import { mockAds, mockUsers } from "@/data/mockData";
@@ -11,6 +11,7 @@ export default function AdDetail() {
   const { id } = useParams();
   const ad = mockAds.find((a) => a.id === id);
   const [mainImage, setMainImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   if (!ad) {
     return (
@@ -28,6 +29,14 @@ export default function AdDetail() {
 
   return (
     <Layout>
+      {/* Lightbox */}
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent className="max-w-4xl border-border bg-card p-2">
+          <DialogTitle className="sr-only">Visualizar imagem</DialogTitle>
+          <img src={ad.images[mainImage]} alt={ad.title} className="w-full rounded-lg object-contain max-h-[80vh]" />
+        </DialogContent>
+      </Dialog>
+
       <section className="py-8 md:py-12">
         <div className="container">
           <div className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
@@ -40,9 +49,33 @@ export default function AdDetail() {
 
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2 space-y-6">
-              <div className="aspect-[16/10] overflow-hidden rounded-xl border border-border">
-                <img src={ad.images[mainImage]} alt={ad.title} className="h-full w-full object-cover" />
+              {/* Gallery with zoom */}
+              <div
+                className="aspect-[16/10] overflow-hidden rounded-xl border border-border cursor-pointer group relative"
+                onClick={() => setLightboxOpen(true)}
+              >
+                <img src={ad.images[mainImage]} alt={ad.title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
               </div>
+
+              {/* Thumbnails */}
+              {ad.images.length > 1 && (
+                <div className="flex gap-2">
+                  {ad.images.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setMainImage(i)}
+                      className={`h-16 w-20 overflow-hidden rounded-lg border-2 transition-colors ${
+                        i === mainImage ? "border-primary" : "border-border hover:border-muted-foreground"
+                      }`}
+                    >
+                      <img src={img} alt="" className="h-full w-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div>
                 <p className="text-sm text-muted-foreground">{ad.brand} · {ad.category} · {ad.condition}</p>
@@ -106,6 +139,7 @@ export default function AdDetail() {
                       <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> Membro desde {new Date(seller.memberSince).getFullYear()}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">{seller.activeAds} anúncios ativos</p>
+                    <Button variant="outline" size="sm" className="w-full border-border text-xs">Ver perfil</Button>
                   </div>
                 )}
               </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Flame } from "lucide-react";
+import { Flame, Instagram, Youtube, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -16,6 +16,17 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               A plataforma premium para colecionadores de miniaturas. Eventos, marketplace e conteúdo para quem vive o colecionismo.
             </p>
+            <div className="flex gap-3">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground hover:text-primary hover:border-primary transition-colors">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground hover:text-primary hover:border-primary transition-colors">
+                <Youtube className="h-4 w-4" />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground hover:text-primary hover:border-primary transition-colors">
+                <Twitter className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           <div>

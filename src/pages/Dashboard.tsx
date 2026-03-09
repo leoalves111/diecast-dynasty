@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { User, FileText, PlusCircle, Trophy, Heart, Settings, BarChart3, Eye, Pencil, Trash2 } from "lucide-react";
+import { User, FileText, PlusCircle, Trophy, Heart, Settings, BarChart3, Pencil, Trash2, Upload, ImagePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,6 +25,27 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const user = mockUsers[0];
   const userAds = mockAds.filter((a) => a.userId === user.id);
+
+  // Simulated upload states
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [adCoverPreview, setAdCoverPreview] = useState<string | null>(null);
+  const [adGalleryPreviews, setAdGalleryPreviews] = useState<string[]>([]);
+  const avatarRef = useRef<HTMLInputElement>(null);
+  const coverRef = useRef<HTMLInputElement>(null);
+  const galleryRef = useRef<HTMLInputElement>(null);
+
+  const handleFilePreview = (e: React.ChangeEvent<HTMLInputElement>, setter: (v: string | null) => void) => {
+    const file = e.target.files?.[0];
+    if (file) setter(URL.createObjectURL(file));
+  };
+
+  const handleGallery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const urls = Array.from(files).map((f) => URL.createObjectURL(f));
+      setAdGalleryPreviews((prev) => [...prev, ...urls]);
+    }
+  };
 
   return (
     <Layout>
@@ -83,6 +104,26 @@ export default function Dashboard() {
                 <div className="space-y-6">
                   <h1 className="font-display text-2xl font-bold">Meu Perfil</h1>
                   <div className="rounded-xl border border-border bg-card p-6 space-y-4 max-w-lg">
+                    {/* Avatar upload */}
+                    <div className="space-y-2">
+                      <Label>Foto de perfil</Label>
+                      <div className="flex items-center gap-4">
+                        <div
+                          className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary border-2 border-border overflow-hidden cursor-pointer hover:border-primary transition-colors"
+                          onClick={() => avatarRef.current?.click()}
+                        >
+                          {avatarPreview ? (
+                            <img src={avatarPreview} alt="Avatar" className="h-full w-full object-cover" />
+                          ) : (
+                            <User className="h-6 w-6 text-muted-foreground" />
+                          )}
+                        </div>
+                        <Button variant="outline" size="sm" className="border-border" onClick={() => avatarRef.current?.click()}>
+                          <Upload className="mr-2 h-3.5 w-3.5" /> Alterar foto
+                        </Button>
+                        <input ref={avatarRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleFilePreview(e, setAvatarPreview)} />
+                      </div>
+                    </div>
                     <div className="space-y-2"><Label>Nome</Label><Input defaultValue={user.name} className="bg-background border-border" /></div>
                     <div className="space-y-2"><Label>Email</Label><Input defaultValue={user.email} className="bg-background border-border" /></div>
                     <div className="space-y-2"><Label>WhatsApp</Label><Input defaultValue={user.phone} className="bg-background border-border" /></div>
@@ -127,6 +168,44 @@ export default function Dashboard() {
                 <div className="space-y-6">
                   <h1 className="font-display text-2xl font-bold">Criar Anúncio</h1>
                   <div className="rounded-xl border border-border bg-card p-6 space-y-4 max-w-lg">
+                    {/* Cover photo upload */}
+                    <div className="space-y-2">
+                      <Label>Foto de capa</Label>
+                      <div
+                        className="flex h-40 w-full items-center justify-center rounded-xl border-2 border-dashed border-border bg-background cursor-pointer hover:border-primary transition-colors overflow-hidden"
+                        onClick={() => coverRef.current?.click()}
+                      >
+                        {adCoverPreview ? (
+                          <img src={adCoverPreview} alt="Capa" className="h-full w-full object-cover" />
+                        ) : (
+                          <div className="text-center text-muted-foreground">
+                            <ImagePlus className="mx-auto h-8 w-8 mb-2" />
+                            <p className="text-xs">Clique para adicionar foto de capa</p>
+                          </div>
+                        )}
+                      </div>
+                      <input ref={coverRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleFilePreview(e, setAdCoverPreview)} />
+                    </div>
+
+                    {/* Gallery upload */}
+                    <div className="space-y-2">
+                      <Label>Galeria de fotos</Label>
+                      <div className="flex flex-wrap gap-2">
+                        {adGalleryPreviews.map((url, i) => (
+                          <div key={i} className="h-20 w-24 overflow-hidden rounded-lg border border-border">
+                            <img src={url} alt="" className="h-full w-full object-cover" />
+                          </div>
+                        ))}
+                        <div
+                          className="flex h-20 w-24 items-center justify-center rounded-lg border-2 border-dashed border-border bg-background cursor-pointer hover:border-primary transition-colors"
+                          onClick={() => galleryRef.current?.click()}
+                        >
+                          <ImagePlus className="h-5 w-5 text-muted-foreground" />
+                        </div>
+                      </div>
+                      <input ref={galleryRef} type="file" accept="image/*" multiple className="hidden" onChange={handleGallery} />
+                    </div>
+
                     <div className="space-y-2"><Label>Nome do item</Label><Input placeholder="Ex: Hot Wheels Skyline GT-R" className="bg-background border-border" /></div>
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-2"><Label>Marca</Label><Input placeholder="Hot Wheels" className="bg-background border-border" /></div>
