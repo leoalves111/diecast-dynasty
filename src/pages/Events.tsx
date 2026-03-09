@@ -1,25 +1,33 @@
 import { useState } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
 import EventCard from "@/components/cards/EventCard";
 import Layout from "@/components/layout/Layout";
 import { mockEvents } from "@/data/mockData";
 
-const filters = ["Todos", "Ativos", "Novos", "Encerrando", "Concluídos"];
+const filters = ["Todos", "Destaques", "Ativos", "Novos", "Encerrando", "Concluídos"];
 const brands = ["Todas", "Hot Wheels", "Matchbox", "Tomica", "Majorette"];
+const categories = ["Todas", ...Array.from(new Set(mockEvents.map((e) => e.category)))];
 
 export default function Events() {
   const [activeFilter, setActiveFilter] = useState("Todos");
   const [activeBrand, setActiveBrand] = useState("Todas");
+  const [activeCategory, setActiveCategory] = useState("Todas");
   const [search, setSearch] = useState("");
+  const [priceRange, setPriceRange] = useState([0]);
+  const maxPrice = Math.max(...mockEvents.map((e) => e.participationFee));
 
   const filtered = mockEvents.filter((e) => {
+    if (activeFilter === "Destaques" && !e.tags.some((t) => t === "Premium" || t === "Raro")) return false;
     if (activeFilter === "Ativos" && e.status !== "active") return false;
     if (activeFilter === "Novos" && e.status !== "new") return false;
     if (activeFilter === "Encerrando" && e.status !== "closing") return false;
     if (activeFilter === "Concluídos" && e.status !== "completed") return false;
     if (activeBrand !== "Todas" && e.brand !== activeBrand) return false;
+    if (activeCategory !== "Todas" && e.category !== activeCategory) return false;
+    if (priceRange[0] > 0 && e.participationFee < priceRange[0]) return false;
     if (search && !e.title.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
@@ -45,6 +53,7 @@ export default function Events() {
             </div>
           </div>
 
+          {/* Status filters */}
           <div className="mb-4 flex flex-wrap gap-2">
             {filters.map((f) => (
               <Button
@@ -58,7 +67,9 @@ export default function Events() {
               </Button>
             ))}
           </div>
-          <div className="mb-8 flex flex-wrap gap-2">
+
+          {/* Brand filters */}
+          <div className="mb-4 flex flex-wrap gap-2">
             {brands.map((b) => (
               <Button
                 key={b}
@@ -70,6 +81,35 @@ export default function Events() {
                 {b}
               </Button>
             ))}
+          </div>
+
+          {/* Category filters */}
+          <div className="mb-4 flex flex-wrap gap-2">
+            {categories.map((c) => (
+              <Button
+                key={c}
+                size="sm"
+                variant={activeCategory === c ? "secondary" : "ghost"}
+                className="text-xs"
+                onClick={() => setActiveCategory(c)}
+              >
+                {c}
+              </Button>
+            ))}
+          </div>
+
+          {/* Price range */}
+          <div className="mb-8 max-w-xs space-y-2">
+            <p className="text-xs text-muted-foreground">
+              Valor mínimo: R$ {priceRange[0].toFixed(2).replace(".", ",")}
+            </p>
+            <Slider
+              value={priceRange}
+              onValueChange={setPriceRange}
+              max={Math.ceil(maxPrice)}
+              step={5}
+              className="[&>span>span]:bg-primary"
+            />
           </div>
 
           {filtered.length > 0 ? (

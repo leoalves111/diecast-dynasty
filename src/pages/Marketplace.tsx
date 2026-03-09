@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
 import AdCard from "@/components/cards/AdCard";
 import Layout from "@/components/layout/Layout";
 import { mockAds } from "@/data/mockData";
@@ -9,16 +10,28 @@ import { mockAds } from "@/data/mockData";
 const brands = ["Todas", "Hot Wheels", "Matchbox", "Tomica"];
 const conditions = ["Todas", "Lacrado", "Aberto", "Usado"];
 const sortOptions = ["Mais recentes", "Maior preço", "Menor preço", "Destaques"];
+const categories = ["Todas", ...Array.from(new Set(mockAds.map((a) => a.category)))];
+const cities = ["Todas", ...Array.from(new Set(mockAds.map((a) => a.city)))];
+const states = ["Todos", ...Array.from(new Set(mockAds.map((a) => a.state)))];
 
 export default function Marketplace() {
   const [search, setSearch] = useState("");
   const [brand, setBrand] = useState("Todas");
   const [condition, setCondition] = useState("Todas");
   const [sort, setSort] = useState("Mais recentes");
+  const [category, setCategory] = useState("Todas");
+  const [city, setCity] = useState("Todas");
+  const [state, setState] = useState("Todos");
+  const [priceRange, setPriceRange] = useState([0]);
+  const maxPrice = Math.max(...mockAds.map((a) => a.price));
 
   let filtered = mockAds.filter((a) => {
     if (brand !== "Todas" && a.brand !== brand) return false;
     if (condition !== "Todas" && a.condition !== condition) return false;
+    if (category !== "Todas" && a.category !== category) return false;
+    if (city !== "Todas" && a.city !== city) return false;
+    if (state !== "Todos" && a.state !== state) return false;
+    if (priceRange[0] > 0 && a.price < priceRange[0]) return false;
     if (search && !a.title.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
@@ -43,17 +56,58 @@ export default function Marketplace() {
             </div>
           </div>
 
+          {/* Brand */}
           <div className="mb-4 flex flex-wrap gap-2">
             {brands.map((b) => (
               <Button key={b} size="sm" variant={brand === b ? "default" : "outline"} className={brand === b ? "bg-gradient-primary" : "border-border"} onClick={() => setBrand(b)}>{b}</Button>
             ))}
           </div>
+
+          {/* Category */}
           <div className="mb-4 flex flex-wrap gap-2">
+            <span className="text-xs text-muted-foreground self-center mr-1">Categoria:</span>
+            {categories.map((c) => (
+              <Button key={c} size="sm" variant={category === c ? "secondary" : "ghost"} className="text-xs" onClick={() => setCategory(c)}>{c}</Button>
+            ))}
+          </div>
+
+          {/* Condition */}
+          <div className="mb-4 flex flex-wrap gap-2">
+            <span className="text-xs text-muted-foreground self-center mr-1">Condição:</span>
             {conditions.map((c) => (
               <Button key={c} size="sm" variant={condition === c ? "secondary" : "ghost"} className="text-xs" onClick={() => setCondition(c)}>{c}</Button>
             ))}
           </div>
+
+          {/* City & State */}
+          <div className="mb-4 flex flex-wrap gap-2">
+            <span className="text-xs text-muted-foreground self-center mr-1">Cidade:</span>
+            {cities.map((c) => (
+              <Button key={c} size="sm" variant={city === c ? "secondary" : "ghost"} className="text-xs" onClick={() => setCity(c)}>{c}</Button>
+            ))}
+            <span className="text-xs text-muted-foreground self-center ml-3 mr-1">Estado:</span>
+            {states.map((s) => (
+              <Button key={s} size="sm" variant={state === s ? "secondary" : "ghost"} className="text-xs" onClick={() => setState(s)}>{s}</Button>
+            ))}
+          </div>
+
+          {/* Price range */}
+          <div className="mb-4 max-w-xs space-y-2">
+            <p className="text-xs text-muted-foreground">
+              Preço mínimo: R$ {priceRange[0].toFixed(2).replace(".", ",")}
+            </p>
+            <Slider
+              value={priceRange}
+              onValueChange={setPriceRange}
+              max={Math.ceil(maxPrice)}
+              step={10}
+              className="[&>span>span]:bg-primary"
+            />
+          </div>
+
+          {/* Sort */}
           <div className="mb-8 flex flex-wrap gap-2">
+            <span className="text-xs text-muted-foreground self-center mr-1">Ordenar:</span>
             {sortOptions.map((s) => (
               <Button key={s} size="sm" variant={sort === s ? "secondary" : "ghost"} className="text-xs" onClick={() => setSort(s)}>{s}</Button>
             ))}

@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
-import { Clock, Users, Share2, ShieldCheck, ChevronRight, Tag, Award, Box, Star } from "lucide-react";
+import { Clock, Users, Share2, ShieldCheck, ChevronRight, Box, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import EventCard from "@/components/cards/EventCard";
 import Layout from "@/components/layout/Layout";
 import { mockEvents } from "@/data/mockData";
@@ -12,6 +13,7 @@ export default function EventDetail() {
   const { id } = useParams();
   const event = mockEvents.find((e) => e.id === id);
   const [mainImage, setMainImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   if (!event) {
     return (
@@ -44,6 +46,14 @@ export default function EventDetail() {
 
   return (
     <Layout>
+      {/* Lightbox */}
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent className="max-w-4xl border-border bg-card p-2">
+          <DialogTitle className="sr-only">Visualizar imagem</DialogTitle>
+          <img src={event.gallery[mainImage]} alt={event.title} className="w-full rounded-lg object-contain max-h-[80vh]" />
+        </DialogContent>
+      </Dialog>
+
       <section className="py-8 md:py-12">
         <div className="container">
           <div className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
@@ -55,12 +65,17 @@ export default function EventDetail() {
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
-            {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
               {/* Gallery */}
               <div className="space-y-3">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border">
-                  <img src={event.gallery[mainImage]} alt={event.title} className="h-full w-full object-cover" />
+                <div
+                  className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border cursor-pointer group"
+                  onClick={() => setLightboxOpen(true)}
+                >
+                  <img src={event.gallery[mainImage]} alt={event.title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
                   <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
                     {event.tags.map((tag) => (
                       <Badge key={tag} className="bg-primary text-primary-foreground text-[10px]">{tag}</Badge>
@@ -183,7 +198,6 @@ export default function EventDetail() {
             </div>
           </div>
 
-          {/* Related */}
           {related.length > 0 && (
             <div className="mt-16">
               <h2 className="mb-6 font-display text-2xl font-bold">Eventos Relacionados</h2>
