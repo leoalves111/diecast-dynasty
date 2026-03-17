@@ -34,93 +34,54 @@ export default function Events() {
 
   return (
     <Layout>
-      <section className="py-12 md:py-16">
-        <div className="container">
-          <div className="mb-8">
-            <h1 className="font-display text-3xl font-bold md:text-4xl">Eventos</h1>
-            <p className="mt-2 text-muted-foreground">Explore eventos e conquiste miniaturas exclusivas.</p>
+      <section className="py-8 md:py-12">
+        <div className="container max-w-[1600px] mx-auto px-6">
+          <div className="mb-8 border-l-4 border-primary pl-4">
+            <h1 className="text-2xl font-black italic uppercase tracking-tighter md:text-3xl">Eventos</h1>
+            <p className="mt-1 text-sm text-muted-foreground">Explore eventos e conquiste miniaturas exclusivas.</p>
           </div>
 
           <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Buscar eventos..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="pl-10 bg-card border-border"
-              />
+              <Input placeholder="Buscar eventos..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 bg-card border-border/50" />
             </div>
           </div>
 
-          {/* Status filters */}
           <div className="mb-4 flex flex-wrap gap-2">
             {filters.map((f) => (
-              <Button
-                key={f}
-                size="sm"
-                variant={activeFilter === f ? "default" : "outline"}
-                className={activeFilter === f ? "bg-gradient-primary" : "border-border hover:border-primary hover:text-primary"}
-                onClick={() => setActiveFilter(f)}
-              >
-                {f}
-              </Button>
+              <Button key={f} size="sm" variant={activeFilter === f ? "default" : "outline"}
+                className={activeFilter === f ? "neon-button text-xs" : "border-border hover:border-primary hover:text-primary text-xs"}
+                onClick={() => setActiveFilter(f)}>{f}</Button>
             ))}
           </div>
 
-          {/* Brand filters */}
           <div className="mb-4 flex flex-wrap gap-2">
             {brands.map((b) => (
-              <Button
-                key={b}
-                size="sm"
-                variant={activeBrand === b ? "secondary" : "ghost"}
-                className="text-xs"
-                onClick={() => setActiveBrand(b)}
-              >
-                {b}
-              </Button>
+              <Button key={b} size="sm" variant={activeBrand === b ? "secondary" : "ghost"} className="text-xs font-bold" onClick={() => setActiveBrand(b)}>{b}</Button>
             ))}
           </div>
 
-          {/* Category filters */}
           <div className="mb-4 flex flex-wrap gap-2">
             {categories.map((c) => (
-              <Button
-                key={c}
-                size="sm"
-                variant={activeCategory === c ? "secondary" : "ghost"}
-                className="text-xs"
-                onClick={() => setActiveCategory(c)}
-              >
-                {c}
-              </Button>
+              <Button key={c} size="sm" variant={activeCategory === c ? "secondary" : "ghost"} className="text-xs font-bold" onClick={() => setActiveCategory(c)}>{c}</Button>
             ))}
           </div>
 
-          {/* Price range */}
           <div className="mb-8 max-w-xs space-y-2">
-            <p className="text-xs text-muted-foreground">
-              Valor mínimo: R$ {priceRange[0].toFixed(2).replace(".", ",")}
-            </p>
-            <Slider
-              value={priceRange}
-              onValueChange={setPriceRange}
-              max={Math.ceil(maxPrice)}
-              step={5}
-              className="[&>span>span]:bg-primary"
-            />
+            <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Valor mínimo: R$ {priceRange[0].toFixed(2).replace(".", ",")}</p>
+            <Slider value={priceRange} onValueChange={setPriceRange} max={Math.ceil(maxPrice)} step={5} className="[&>span>span]:bg-primary" />
           </div>
 
           {filtered.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {filtered.map((event) => (
                 <EventCard key={event.id} event={event} />
               ))}
             </div>
           ) : (
             <div className="py-20 text-center text-muted-foreground">
-              <p className="text-lg">Nenhum evento encontrado.</p>
+              <p className="text-lg font-bold">Nenhum evento encontrado.</p>
             </div>
           )}
         </div>

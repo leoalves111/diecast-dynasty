@@ -7,7 +7,7 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
         "2xl": "1400px",
       },
@@ -15,7 +15,6 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Outfit", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -61,6 +60,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        gold: "hsl(var(--lootly-gold))",
+        "gold-dark": "hsl(var(--lootly-gold-dark))",
+        surface: "hsl(var(--lootly-surface))",
+        "surface-hover": "hsl(var(--lootly-surface-hover))",
+        "rarity-common": "hsl(var(--rarity-common))",
+        "rarity-uncommon": "hsl(var(--rarity-uncommon))",
+        "rarity-rare": "hsl(var(--rarity-rare))",
+        "rarity-epic": "hsl(var(--rarity-epic))",
+        "rarity-legendary": "hsl(var(--rarity-legendary))",
+        "rarity-mythical": "hsl(var(--rarity-mythical))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,20 +85,20 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "pulse-glow": {
+        "glow-pulse": {
           "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "1" },
+          "50%": { opacity: "0.8" },
         },
-        "slide-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+        ticker: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "slide-up": "slide-up 0.5s ease-out",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        ticker: "ticker 30s linear infinite",
       },
     },
   },

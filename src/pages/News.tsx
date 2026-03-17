@@ -5,13 +5,13 @@ import { mockPosts } from "@/data/mockData";
 export default function News() {
   return (
     <Layout>
-      <section className="py-12 md:py-16">
-        <div className="container">
-          <div className="mb-8">
-            <h1 className="font-display text-3xl font-bold md:text-4xl">Novidades</h1>
-            <p className="mt-2 text-muted-foreground">Fique por dentro do mundo die-cast e colecionismo.</p>
+      <section className="py-8 md:py-12">
+        <div className="container max-w-[1600px] mx-auto px-6">
+          <div className="mb-8 border-l-4 border-primary pl-4">
+            <h1 className="text-2xl font-black italic uppercase tracking-tighter md:text-3xl">Novidades</h1>
+            <p className="mt-1 text-sm text-muted-foreground">Fique por dentro do mundo die-cast e colecionismo.</p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {mockPosts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}

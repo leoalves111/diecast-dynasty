@@ -19,8 +19,8 @@ export default function EventDetail() {
     return (
       <Layout>
         <div className="container py-20 text-center">
-          <h1 className="font-display text-2xl font-bold">Evento não encontrado</h1>
-          <Link to="/eventos" className="mt-4 inline-block text-primary hover:underline">Voltar aos eventos</Link>
+          <h1 className="text-2xl font-black uppercase">Evento não encontrado</h1>
+          <Link to="/eventos" className="mt-4 inline-block text-primary hover:underline font-bold text-sm">Voltar aos eventos</Link>
         </div>
       </Layout>
     );
@@ -46,7 +46,6 @@ export default function EventDetail() {
 
   return (
     <Layout>
-      {/* Lightbox */}
       <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
         <DialogContent className="max-w-4xl border-border bg-card p-2">
           <DialogTitle className="sr-only">Visualizar imagem</DialogTitle>
@@ -55,43 +54,34 @@ export default function EventDetail() {
       </Dialog>
 
       <section className="py-8 md:py-12">
-        <div className="container">
-          <div className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="container max-w-[1600px] mx-auto px-6">
+          <div className="mb-6 flex items-center gap-2 text-xs text-muted-foreground font-bold uppercase tracking-wider">
             <Link to="/" className="hover:text-foreground">Início</Link>
             <ChevronRight className="h-3 w-3" />
             <Link to="/eventos" className="hover:text-foreground">Eventos</Link>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-foreground">{event.title}</span>
+            <span className="text-foreground normal-case">{event.title}</span>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2 space-y-8">
-              {/* Gallery */}
               <div className="space-y-3">
-                <div
-                  className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border cursor-pointer group"
-                  onClick={() => setLightboxOpen(true)}
-                >
+                <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border/40 cursor-pointer group" onClick={() => setLightboxOpen(true)}>
                   <img src={event.gallery[mainImage]} alt={event.title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
                     {event.tags.map((tag) => (
-                      <Badge key={tag} className="bg-primary text-primary-foreground text-[10px]">{tag}</Badge>
+                      <Badge key={tag} className="bg-primary text-primary-foreground text-[9px] font-black uppercase">{tag}</Badge>
                     ))}
                   </div>
                 </div>
                 {event.gallery.length > 1 && (
                   <div className="flex gap-2">
                     {event.gallery.map((img, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setMainImage(i)}
-                        className={`h-16 w-20 overflow-hidden rounded-lg border-2 transition-colors ${
-                          i === mainImage ? "border-primary" : "border-border hover:border-muted-foreground"
-                        }`}
-                      >
+                      <button key={i} onClick={() => setMainImage(i)}
+                        className={`h-16 w-20 overflow-hidden rounded-lg border-2 transition-colors ${i === mainImage ? "border-primary" : "border-border hover:border-muted-foreground"}`}>
                         <img src={img} alt="" className="h-full w-full object-cover" />
                       </button>
                     ))}
@@ -99,16 +89,14 @@ export default function EventDetail() {
                 )}
               </div>
 
-              {/* Info */}
               <div>
-                <p className="text-sm text-muted-foreground">{event.brand} · {event.category}</p>
-                <h1 className="mt-2 font-display text-2xl font-bold md:text-3xl">{event.title}</h1>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{event.description}</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold">{event.brand} · {event.category}</p>
+                <h1 className="mt-2 text-2xl font-black uppercase italic tracking-tighter md:text-3xl">{event.title}</h1>
+                <p className="mt-4 text-muted-foreground leading-relaxed text-sm">{event.description}</p>
               </div>
 
-              {/* About Item */}
-              <div className="rounded-xl border border-border bg-card p-6 space-y-4">
-                <h2 className="font-display text-xl font-bold flex items-center gap-2">
+              <div className="rounded-xl border border-border/40 bg-card p-6 space-y-4">
+                <h2 className="text-lg font-black uppercase tracking-wide flex items-center gap-2">
                   <Box className="h-5 w-5 text-primary" /> Sobre o Item
                 </h2>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -120,7 +108,7 @@ export default function EventDetail() {
                     { label: "Raridade", value: event.item.rarity },
                   ].map((info) => (
                     <div key={info.label}>
-                      <p className="text-xs text-muted-foreground">{info.label}</p>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold">{info.label}</p>
                       <p className="text-sm font-medium">{info.value}</p>
                     </div>
                   ))}
@@ -128,9 +116,8 @@ export default function EventDetail() {
                 <p className="text-sm text-muted-foreground leading-relaxed">{event.item.details}</p>
               </div>
 
-              {/* Rules */}
-              <div className="rounded-xl border border-border bg-card p-6 space-y-4">
-                <h2 className="font-display text-xl font-bold flex items-center gap-2">
+              <div className="rounded-xl border border-border/40 bg-card p-6 space-y-4">
+                <h2 className="text-lg font-black uppercase tracking-wide flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5 text-primary" /> Regras do Evento
                 </h2>
                 <ul className="space-y-2">
@@ -143,13 +130,12 @@ export default function EventDetail() {
                 </ul>
               </div>
 
-              {/* FAQ */}
-              <div className="rounded-xl border border-border bg-card p-6 space-y-4">
-                <h2 className="font-display text-xl font-bold">Perguntas Frequentes</h2>
+              <div className="rounded-xl border border-border/40 bg-card p-6 space-y-4">
+                <h2 className="text-lg font-black uppercase tracking-wide">Perguntas Frequentes</h2>
                 <div className="space-y-4">
                   {faqs.map((faq, i) => (
                     <div key={i}>
-                      <h3 className="text-sm font-semibold">{faq.q}</h3>
+                      <h3 className="text-sm font-bold">{faq.q}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">{faq.a}</p>
                     </div>
                   ))}
@@ -157,13 +143,12 @@ export default function EventDetail() {
               </div>
             </div>
 
-            {/* Sidebar */}
             <div className="space-y-4">
               <div className="sticky top-20 space-y-4">
-                <div className="rounded-xl border border-border bg-card p-6 space-y-5">
+                <div className="rounded-xl border border-border/40 bg-card p-6 space-y-5">
                   <div>
-                    <p className="text-xs text-muted-foreground">Taxa de participação</p>
-                    <p className="font-display text-3xl font-black text-primary">
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold">Taxa de participação</p>
+                    <p className="text-3xl font-black text-primary">
                       R$ {event.participationFee.toFixed(2).replace(".", ",")}
                     </p>
                   </div>
@@ -171,9 +156,9 @@ export default function EventDetail() {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground flex items-center gap-1"><Users className="h-3.5 w-3.5" /> Participantes</span>
-                      <span className="font-medium">{event.currentParticipants}/{event.minParticipants}</span>
+                      <span className="font-bold">{event.currentParticipants}/{event.minParticipants}</span>
                     </div>
-                    <Progress value={progress} className="h-2 bg-secondary [&>div]:bg-gradient-primary" />
+                    <Progress value={progress} className="h-2 bg-secondary [&>div]:bg-primary" />
                     <p className="text-xs text-muted-foreground text-right">{progress}% preenchido</p>
                   </div>
 
@@ -182,7 +167,7 @@ export default function EventDetail() {
                     {event.status === "completed" ? "Evento encerrado" : `${daysLeft} dias restantes`}
                   </div>
 
-                  <Button className="w-full bg-gradient-primary hover:opacity-90 text-base" size="lg" disabled={event.status === "completed"}>
+                  <Button className="w-full neon-button h-12 text-sm" size="lg" disabled={event.status === "completed"}>
                     {event.status === "completed" ? "Encerrado" : "Participar do Evento"}
                   </Button>
 
@@ -190,7 +175,7 @@ export default function EventDetail() {
                     <Share2 className="mr-2 h-4 w-4" /> Compartilhar
                   </Button>
 
-                  <p className="text-[11px] text-muted-foreground text-center leading-relaxed">
+                  <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
                     Evento transparente — acompanhe o progresso e resultado em tempo real.
                   </p>
                 </div>
@@ -200,8 +185,8 @@ export default function EventDetail() {
 
           {related.length > 0 && (
             <div className="mt-16">
-              <h2 className="mb-6 font-display text-2xl font-bold">Eventos Relacionados</h2>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <h2 className="mb-6 text-xl font-black italic uppercase tracking-tighter border-l-4 border-primary pl-4">Eventos Relacionados</h2>
+              <div className="grid gap-4 grid-cols-2 lg:grid-cols-3">
                 {related.map((e) => (
                   <EventCard key={e.id} event={e} />
                 ))}
