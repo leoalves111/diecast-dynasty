@@ -42,86 +42,73 @@ export default function Marketplace() {
 
   return (
     <Layout>
-      <section className="py-12 md:py-16">
-        <div className="container">
-          <div className="mb-8">
-            <h1 className="font-display text-3xl font-bold md:text-4xl">Marketplace</h1>
-            <p className="mt-2 text-muted-foreground">Encontre e anuncie miniaturas colecionáveis.</p>
+      <section className="py-8 md:py-12">
+        <div className="container max-w-[1600px] mx-auto px-6">
+          <div className="mb-8 border-l-4 border-primary pl-4">
+            <h1 className="text-2xl font-black italic uppercase tracking-tighter md:text-3xl">Marketplace</h1>
+            <p className="mt-1 text-sm text-muted-foreground">Encontre e anuncie miniaturas colecionáveis.</p>
           </div>
 
           <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Buscar anúncios..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 bg-card border-border" />
+              <Input placeholder="Buscar anúncios..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 bg-card border-border/50" />
             </div>
           </div>
 
-          {/* Brand */}
           <div className="mb-4 flex flex-wrap gap-2">
             {brands.map((b) => (
-              <Button key={b} size="sm" variant={brand === b ? "default" : "outline"} className={brand === b ? "bg-gradient-primary" : "border-border"} onClick={() => setBrand(b)}>{b}</Button>
+              <Button key={b} size="sm" variant={brand === b ? "default" : "outline"}
+                className={brand === b ? "neon-button text-xs" : "border-border text-xs"} onClick={() => setBrand(b)}>{b}</Button>
             ))}
           </div>
 
-          {/* Category */}
           <div className="mb-4 flex flex-wrap gap-2">
-            <span className="text-xs text-muted-foreground self-center mr-1">Categoria:</span>
+            <span className="text-[10px] text-muted-foreground self-center mr-1 font-bold uppercase tracking-wider">Categoria:</span>
             {categories.map((c) => (
-              <Button key={c} size="sm" variant={category === c ? "secondary" : "ghost"} className="text-xs" onClick={() => setCategory(c)}>{c}</Button>
+              <Button key={c} size="sm" variant={category === c ? "secondary" : "ghost"} className="text-xs font-bold" onClick={() => setCategory(c)}>{c}</Button>
             ))}
           </div>
 
-          {/* Condition */}
           <div className="mb-4 flex flex-wrap gap-2">
-            <span className="text-xs text-muted-foreground self-center mr-1">Condição:</span>
+            <span className="text-[10px] text-muted-foreground self-center mr-1 font-bold uppercase tracking-wider">Condição:</span>
             {conditions.map((c) => (
-              <Button key={c} size="sm" variant={condition === c ? "secondary" : "ghost"} className="text-xs" onClick={() => setCondition(c)}>{c}</Button>
+              <Button key={c} size="sm" variant={condition === c ? "secondary" : "ghost"} className="text-xs font-bold" onClick={() => setCondition(c)}>{c}</Button>
             ))}
           </div>
 
-          {/* City & State */}
           <div className="mb-4 flex flex-wrap gap-2">
-            <span className="text-xs text-muted-foreground self-center mr-1">Cidade:</span>
+            <span className="text-[10px] text-muted-foreground self-center mr-1 font-bold uppercase tracking-wider">Cidade:</span>
             {cities.map((c) => (
-              <Button key={c} size="sm" variant={city === c ? "secondary" : "ghost"} className="text-xs" onClick={() => setCity(c)}>{c}</Button>
+              <Button key={c} size="sm" variant={city === c ? "secondary" : "ghost"} className="text-xs font-bold" onClick={() => setCity(c)}>{c}</Button>
             ))}
-            <span className="text-xs text-muted-foreground self-center ml-3 mr-1">Estado:</span>
+            <span className="text-[10px] text-muted-foreground self-center ml-3 mr-1 font-bold uppercase tracking-wider">Estado:</span>
             {states.map((s) => (
-              <Button key={s} size="sm" variant={state === s ? "secondary" : "ghost"} className="text-xs" onClick={() => setState(s)}>{s}</Button>
+              <Button key={s} size="sm" variant={state === s ? "secondary" : "ghost"} className="text-xs font-bold" onClick={() => setState(s)}>{s}</Button>
             ))}
           </div>
 
-          {/* Price range */}
           <div className="mb-4 max-w-xs space-y-2">
-            <p className="text-xs text-muted-foreground">
-              Preço mínimo: R$ {priceRange[0].toFixed(2).replace(".", ",")}
-            </p>
-            <Slider
-              value={priceRange}
-              onValueChange={setPriceRange}
-              max={Math.ceil(maxPrice)}
-              step={10}
-              className="[&>span>span]:bg-primary"
-            />
+            <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Preço mínimo: R$ {priceRange[0].toFixed(2).replace(".", ",")}</p>
+            <Slider value={priceRange} onValueChange={setPriceRange} max={Math.ceil(maxPrice)} step={10} className="[&>span>span]:bg-primary" />
           </div>
 
-          {/* Sort */}
           <div className="mb-8 flex flex-wrap gap-2">
-            <span className="text-xs text-muted-foreground self-center mr-1">Ordenar:</span>
+            <span className="text-[10px] text-muted-foreground self-center mr-1 font-bold uppercase tracking-wider">Ordenar:</span>
             {sortOptions.map((s) => (
-              <Button key={s} size="sm" variant={sort === s ? "secondary" : "ghost"} className="text-xs" onClick={() => setSort(s)}>{s}</Button>
+              <Button key={s} size="sm" variant={sort === s ? "secondary" : "ghost"} className="text-xs font-bold" onClick={() => setSort(s)}>{s}</Button>
             ))}
           </div>
 
           {filtered.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {filtered.map((ad) => (
                 <AdCard key={ad.id} ad={ad} />
               ))}
             </div>
           ) : (
             <div className="py-20 text-center text-muted-foreground">
-              <p className="text-lg">Nenhum anúncio encontrado.</p>
+              <p className="text-lg font-bold">Nenhum anúncio encontrado.</p>
             </div>
           )}
         </div>
