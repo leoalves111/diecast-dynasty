@@ -51,10 +51,10 @@ export default function Index() {
               <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
               <span className="text-primary">colecionadores</span>.
             </h1>
-            <p className="mt-6 text-sm text-muted-foreground max-w-md leading-relaxed">
+            <p className="mt-6 text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
               Uma plataforma completa para explorar carrinhos colecionáveis, participar de eventos especiais e acompanhar as novidades do mundo die-cast.
             </p>
-            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link to="/eventos">
                 <Button className="neon-button h-12 px-8 text-sm">
                   Explorar Eventos <ArrowRight className="ml-2 h-4 w-4" />
