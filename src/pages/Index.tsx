@@ -42,19 +42,18 @@ export default function Index() {
       <section className="relative border-b border-border overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="relative py-20 md:py-28 px-6 md:px-10 lg:flex lg:items-center lg:gap-8">
-          <div className="hidden lg:block lg:w-[40%] lg:flex-shrink-0" />
-          <div className="lg:flex-1 min-w-0">
+        <div className="container relative max-w-[1400px] mx-auto px-6 py-20 md:py-28">
+          <div className="max-w-xl lg:ml-[40%]">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
             </div>
-            <h1 className="text-3xl font-black uppercase italic tracking-tighter md:text-4xl xl:text-5xl leading-[0.95]">
+            <h1 className="text-2xl font-black uppercase italic tracking-tighter sm:text-3xl md:text-4xl leading-[0.95]">
               Participe de eventos, descubra{" "}
               <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
               <span className="text-primary">colecionadores</span>.
             </h1>
-            <p className="mt-6 text-sm md:text-base text-muted-foreground max-w-lg leading-relaxed">
+            <p className="mt-6 text-sm text-muted-foreground max-w-md leading-relaxed">
               Uma plataforma completa para explorar carrinhos colecionáveis, participar de eventos especiais e acompanhar as novidades do mundo die-cast.
             </p>
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
