@@ -39,11 +39,11 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative border-b border-border overflow-hidden">
+      <section className="relative border-b border-border">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="container relative max-w-[1400px] mx-auto px-6 py-20 md:py-28">
-          <div className="max-w-xl lg:ml-[40%]">
+        <div className="relative flex min-h-[60vh] items-center justify-end px-6 md:px-12 py-16">
+          <div className="w-full max-w-xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
