@@ -39,21 +39,24 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border">
+      <section className="relative overflow-hidden border-b border-border min-h-[70vh] flex items-center">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="relative py-16 md:py-24 px-6">
-          <div className="max-w-2xl mx-auto lg:ml-[30%]">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
+        <div className="relative w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-6 py-16 md:py-20">
+          {/* Left: empty space / decorative */}
+          <div className="hidden lg:block" />
+          {/* Right: content */}
+          <div className="flex flex-col justify-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider w-fit">
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
             </div>
-            <h1 className="text-3xl font-black uppercase italic tracking-tighter md:text-5xl leading-[0.9]">
+            <h1 className="text-3xl font-black uppercase italic tracking-tighter md:text-[2.8rem] lg:text-[3.2rem] leading-[0.95]">
               Participe de eventos, descubra{" "}
               <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
               <span className="text-primary">colecionadores</span>.
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
+            <p className="mt-6 text-base text-muted-foreground max-w-lg leading-relaxed">
               Uma plataforma completa para explorar carrinhos colecionáveis, participar de eventos especiais e acompanhar as novidades do mundo die-cast.
             </p>
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
