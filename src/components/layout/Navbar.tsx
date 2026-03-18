@@ -27,7 +27,7 @@ export const Navbar = () => {
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-3 ml-auto">
+        <div className="flex items-center gap-2 ml-auto flex-shrink-0">
           <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground relative">
             <Bell className="h-5 w-5" />
             <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full border-2 border-background" />
