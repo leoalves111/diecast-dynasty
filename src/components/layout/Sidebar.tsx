@@ -69,7 +69,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-24 bg-sidebar flex flex-col items-center py-6 border-r border-sidebar-border z-50">
+    <aside className="fixed left-0 top-0 h-screen w-20 bg-sidebar flex flex-col items-center py-6 border-r border-sidebar-border z-50">
       {/* Logo */}
       <div className="mb-8">
         <Link to="/" className="flex items-center justify-center w-12 h-12">

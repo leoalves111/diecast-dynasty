@@ -9,10 +9,10 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-[hsl(var(--navbar-bg))]/95 backdrop-blur supports-[backdrop-filter]:bg-[hsl(var(--navbar-bg))]/60">
-      <div className="flex h-16 items-center px-6 gap-4 max-w-[1600px] mx-auto w-full">
+      <div className="flex h-16 items-center px-4 md:px-6 gap-3 w-full">
         {/* Left: Search */}
-        <div className="flex-1 max-w-2xl flex items-center gap-4">
-          <div className="relative group flex-1 max-w-md">
+        <div className="flex-1 min-w-0 flex items-center gap-3">
+          <div className="relative group flex-1 max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
             <Input
               placeholder="Buscar eventos, anúncios, novidades..."
@@ -20,14 +20,14 @@ export const Navbar = () => {
             />
           </div>
           <Link to="/eventos">
-            <Button className="hidden md:flex neon-button h-10 px-5 text-xs gap-2">
+            <Button className="hidden md:flex neon-button h-10 px-4 text-[11px] gap-1.5 whitespace-nowrap">
               Participar de Eventos
             </Button>
           </Link>
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-3 ml-auto">
+        <div className="flex items-center gap-2 ml-auto flex-shrink-0">
           <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground relative">
             <Bell className="h-5 w-5" />
             <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full border-2 border-background" />

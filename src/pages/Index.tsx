@@ -39,24 +39,22 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
-        <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="container relative py-16 md:py-24 max-w-[1600px] mx-auto px-6">
-          <div className="max-w-3xl">
+      <section className="border-b border-border">
+        <div className="py-16 md:py-24 px-6">
+          <div className="max-w-xl mx-auto text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
             </div>
-            <h1 className="text-4xl font-black uppercase italic tracking-tighter md:text-6xl leading-[0.9]">
+            <h1 className="text-2xl font-black uppercase italic tracking-tighter sm:text-3xl leading-[0.95] text-foreground">
               Participe de eventos, descubra{" "}
               <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
               <span className="text-primary">colecionadores</span>.
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
+            <p className="mt-6 text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
               Uma plataforma completa para explorar carrinhos colecionáveis, participar de eventos especiais e acompanhar as novidades do mundo die-cast.
             </p>
-            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link to="/eventos">
                 <Button className="neon-button h-12 px-8 text-sm">
                   Explorar Eventos <ArrowRight className="ml-2 h-4 w-4" />
