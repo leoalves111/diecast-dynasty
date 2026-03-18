@@ -46,7 +46,7 @@ export default function Index() {
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
             </div>
-            <h1 className="text-2xl font-black uppercase italic tracking-tighter sm:text-3xl md:text-4xl leading-[0.95] text-foreground">
+            <h1 className="text-2xl font-black uppercase italic tracking-tighter sm:text-3xl leading-[0.95] text-foreground">
               Participe de eventos, descubra{" "}
               <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
               <span className="text-primary">colecionadores</span>.
