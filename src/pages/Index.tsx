@@ -42,13 +42,13 @@ export default function Index() {
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="container relative py-16 md:py-24 max-w-[1600px] mx-auto px-6">
-          <div className="max-w-3xl">
+        <div className="relative py-16 md:py-24 max-w-[1200px] mx-auto px-6">
+          <div className="max-w-2xl ml-auto">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
             </div>
-            <h1 className="text-4xl font-black uppercase italic tracking-tighter md:text-6xl leading-[0.9]">
+            <h1 className="text-3xl font-black uppercase italic tracking-tighter md:text-5xl leading-[0.9]">
               Participe de eventos, descubra{" "}
               <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
               <span className="text-primary">colecionadores</span>.

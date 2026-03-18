@@ -9,10 +9,10 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-[hsl(var(--navbar-bg))]/95 backdrop-blur supports-[backdrop-filter]:bg-[hsl(var(--navbar-bg))]/60">
-      <div className="flex h-16 items-center px-6 gap-4 max-w-[1600px] mx-auto w-full">
+      <div className="flex h-16 items-center px-4 md:px-6 gap-3 w-full">
         {/* Left: Search */}
-        <div className="flex-1 max-w-2xl flex items-center gap-4">
-          <div className="relative group flex-1 max-w-md">
+        <div className="flex-1 min-w-0 flex items-center gap-3">
+          <div className="relative group flex-1 max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
             <Input
               placeholder="Buscar eventos, anúncios, novidades..."
