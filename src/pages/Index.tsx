@@ -42,8 +42,8 @@ export default function Index() {
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="relative py-16 md:py-24 max-w-[1200px] mx-auto px-6">
-          <div className="max-w-2xl ml-auto">
+        <div className="relative py-16 md:py-24 px-6">
+          <div className="max-w-2xl mx-auto lg:ml-[30%]">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
