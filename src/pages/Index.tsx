@@ -39,35 +39,31 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative border-b border-border">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent z-0" />
-        <div className="absolute inset-0 grid-pattern opacity-30 z-0" />
-        <div className="relative z-10 flex min-h-[60vh] items-center justify-end px-6 md:px-12 py-16">
-          <div className="w-full max-w-xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
-              <Flame className="h-3 w-3" />
-              Plataforma #1 para colecionadores
-            </div>
-            <h1 className="text-2xl font-black uppercase italic tracking-tighter sm:text-3xl md:text-4xl leading-[0.95]">
-              Participe de eventos, descubra{" "}
-              <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
-              <span className="text-primary">colecionadores</span>.
-            </h1>
-            <p className="mt-6 text-sm text-muted-foreground max-w-md leading-relaxed">
-              Uma plataforma completa para explorar carrinhos colecionáveis, participar de eventos especiais e acompanhar as novidades do mundo die-cast.
-            </p>
-            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
-              <Link to="/eventos">
-                <Button className="neon-button h-12 px-8 text-sm">
-                  Explorar Eventos <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link to="/marketplace">
-                <Button variant="outline" className="border-border h-12 px-8 text-sm font-bold hover:border-primary hover:text-primary">
-                  Acessar Marketplace
-                </Button>
-              </Link>
-            </div>
+      <section className="border-b border-border bg-background py-20 md:py-28 px-6 md:px-12">
+        <div className="max-w-xl ml-auto mr-6 lg:mr-[10%]">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
+            <Flame className="h-3 w-3" />
+            Plataforma #1 para colecionadores
+          </div>
+          <h1 className="text-2xl font-black uppercase italic tracking-tighter sm:text-3xl md:text-4xl leading-[0.95]">
+            Participe de eventos, descubra{" "}
+            <span className="text-primary">raridades</span> e conecte-se ao universo dos{" "}
+            <span className="text-primary">colecionadores</span>.
+          </h1>
+          <p className="mt-6 text-sm text-muted-foreground max-w-md leading-relaxed">
+            Uma plataforma completa para explorar carrinhos colecionáveis, participar de eventos especiais e acompanhar as novidades do mundo die-cast.
+          </p>
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+            <Link to="/eventos">
+              <Button className="neon-button h-12 px-8 text-sm">
+                Explorar Eventos <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/marketplace">
+              <Button variant="outline" className="border-border h-12 px-8 text-sm font-bold hover:border-primary hover:text-primary">
+                Acessar Marketplace
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
