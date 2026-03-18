@@ -20,7 +20,7 @@ export const Navbar = () => {
             />
           </div>
           <Link to="/eventos">
-            <Button className="hidden md:flex neon-button h-10 px-5 text-xs gap-2">
+            <Button className="hidden md:flex neon-button h-10 px-4 text-[11px] gap-1.5 whitespace-nowrap">
               Participar de Eventos
             </Button>
           </Link>
