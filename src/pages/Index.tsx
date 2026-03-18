@@ -40,8 +40,8 @@ export default function Index() {
     <Layout>
       {/* HERO */}
       <section className="relative border-b border-border">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
-        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent z-0" />
+        <div className="absolute inset-0 grid-pattern opacity-30 z-0" />
         <div className="relative flex min-h-[60vh] items-center justify-end px-6 md:px-12 py-16">
           <div className="w-full max-w-xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
