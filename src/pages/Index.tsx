@@ -40,8 +40,8 @@ export default function Index() {
     <Layout>
       {/* HERO */}
       <section className="border-b border-border">
-        <div className="py-16 md:py-24 px-6 md:px-10 max-w-4xl mx-auto">
-          <div>
+        <div className="py-16 md:py-24 px-6">
+          <div className="max-w-xl mx-auto text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs text-primary font-bold uppercase tracking-wider">
               <Flame className="h-3 w-3" />
               Plataforma #1 para colecionadores
