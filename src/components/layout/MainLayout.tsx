@@ -9,9 +9,9 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div className="flex bg-background min-h-screen font-sans text-foreground overflow-hidden">
+    <div className="flex bg-background min-h-screen font-sans text-foreground">
       <Sidebar />
-      <div className="flex-1 flex flex-col ml-20 relative z-0">
+      <div className="flex-1 flex flex-col min-w-0 ml-20">
         <Navbar />
         <main className="flex-1 overflow-y-auto overflow-x-hidden">
           {children}
