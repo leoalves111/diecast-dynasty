@@ -48,7 +48,7 @@ export default function Dashboard() {
   return (
     <Layout>
       <section className="py-8 md:py-12">
-        <div className="container max-w-[1600px] mx-auto px-6">
+        <div className="px-6">
           <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
             <nav className="space-y-1">
               {tabs.map((tab) => (

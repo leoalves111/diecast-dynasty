@@ -18,7 +18,7 @@ export default function EventDetail() {
   if (!event) {
     return (
       <Layout>
-        <div className="container py-20 text-center">
+        <div className="px-6 py-20 text-center">
           <h1 className="text-2xl font-black uppercase">Evento não encontrado</h1>
           <Link to="/eventos" className="mt-4 inline-block text-primary hover:underline font-bold text-sm">Voltar aos eventos</Link>
         </div>
@@ -54,7 +54,7 @@ export default function EventDetail() {
       </Dialog>
 
       <section className="py-8 md:py-12">
-        <div className="container max-w-[1600px] mx-auto px-6">
+        <div className="px-6">
           <div className="mb-6 flex items-center gap-2 text-xs text-muted-foreground font-bold uppercase tracking-wider">
             <Link to="/" className="hover:text-foreground">Início</Link>
             <ChevronRight className="h-3 w-3" />

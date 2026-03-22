@@ -37,7 +37,7 @@ export default function AdDetail() {
       </Dialog>
 
       <section className="py-8 md:py-12">
-        <div className="container max-w-[1600px] mx-auto px-6">
+        <div className="px-6">
           <div className="mb-6 flex items-center gap-2 text-xs text-muted-foreground font-bold uppercase tracking-wider">
             <Link to="/" className="hover:text-foreground">Início</Link>
             <ChevronRight className="h-3 w-3" />

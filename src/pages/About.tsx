@@ -5,7 +5,7 @@ export default function About() {
   return (
     <Layout>
       <section className="py-8 md:py-16">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="px-6 max-w-3xl">
           <div className="text-center mb-12">
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary">
               <span className="text-2xl font-black text-primary-foreground">C</span>

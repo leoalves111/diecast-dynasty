@@ -43,7 +43,7 @@ export default function Marketplace() {
   return (
     <Layout>
       <section className="py-8 md:py-12">
-        <div className="container max-w-[1600px] mx-auto px-6">
+        <div className="px-6">
           <div className="mb-8 border-l-4 border-primary pl-4">
             <h1 className="text-2xl font-black italic uppercase tracking-tighter md:text-3xl">Marketplace</h1>
             <p className="mt-1 text-sm text-muted-foreground">Encontre e anuncie miniaturas colecionáveis.</p>
