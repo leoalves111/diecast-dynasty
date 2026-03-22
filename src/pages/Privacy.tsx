@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <Layout>
       <section className="py-8 md:py-12">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="px-6 max-w-3xl">
           <div className="mb-8 border-l-4 border-primary pl-4">
             <h1 className="text-2xl font-black italic uppercase tracking-tighter">Política de Privacidade</h1>
           </div>

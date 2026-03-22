@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-[#050608] pt-12 pb-8 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-      <div className="container max-w-[1600px] mx-auto px-6">
+      <div className="px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 mb-10">
           {/* Brand */}
           <div className="lg:col-span-4 space-y-4">
